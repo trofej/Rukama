@@ -74,6 +74,11 @@ namespace Rukama.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Text)]
+            [Display(Name = "Username")]
+            public string Nickname { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
             [Display(Name = "First Name")]
             public string Name { get; set; }
 
@@ -129,7 +134,7 @@ namespace Rukama.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Users { UserName = Input.Email, Email = Input.Email, Name = Input.Name, Surname = Input.Surname };
+                var user = new Users { Nickname = Input.Nickname, UserName = Input.Email, Email = Input.Email, Name = Input.Name, Surname = Input.Surname };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

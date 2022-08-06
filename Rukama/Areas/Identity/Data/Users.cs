@@ -10,6 +10,11 @@ namespace Rukama.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the ApplicationUser class
 public class Users : IdentityUser
 {
+
+    [PersonalData]
+    [Column(TypeName = "nvarchar(100)")]
+    public string Nickname { get; set; }
+
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string Name { get; set; }
@@ -17,5 +22,10 @@ public class Users : IdentityUser
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string Surname { get; set; }
+
+    [PersonalData]
+    [Column(TypeName = "nvarchar(2048)")]
+    public string? AvatarUrl { get; set; }
+
 }
 

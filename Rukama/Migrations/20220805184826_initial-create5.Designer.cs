@@ -12,8 +12,8 @@ using Rukama.Data;
 namespace Rukama.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20220803120730_Initial-Create2")]
-    partial class InitialCreate2
+    [Migration("20220805184826_initial-create5")]
+    partial class initialcreate5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,6 +169,9 @@ namespace Rukama.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("AvatarUrl")
+                        .HasColumnType("nvarchar(2048)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -187,6 +190,10 @@ namespace Rukama.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Nickname")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
