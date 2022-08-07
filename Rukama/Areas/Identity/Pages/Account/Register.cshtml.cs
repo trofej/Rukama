@@ -24,17 +24,17 @@ namespace Rukama.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<Users> _signInManager;
-        private readonly UserManager<Users> _userManager;
-        private readonly IUserStore<Users> _userStore;
-        private readonly IUserEmailStore<Users> _emailStore;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserStore<User> _userStore;
+        private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<Users> userManager,
-            IUserStore<Users> userStore,
-            SignInManager<Users> signInManager,
+            UserManager<User> userManager,
+            IUserStore<User> userStore,
+            SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -134,7 +134,7 @@ namespace Rukama.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Users { Nickname = Input.Nickname, UserName = Input.Email, Email = Input.Email, Name = Input.Name, Surname = Input.Surname };
+                var user = new User { Nickname = Input.Nickname, UserName = Input.Email, Email = Input.Email, Name = Input.Name, Surname = Input.Surname };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -177,13 +177,13 @@ namespace Rukama.Areas.Identity.Pages.Account
         }
 
 
-        private IUserEmailStore<Users> GetEmailStore()
+        private IUserEmailStore<User> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<Users>)_userStore;
+            return (IUserEmailStore<User>)_userStore;
         }
     }
 }

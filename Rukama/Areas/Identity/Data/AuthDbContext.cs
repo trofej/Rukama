@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Rukama.Areas.Identity.Data;
+using Rukama.Models;
 
 namespace Rukama.Data;
 
-public class AuthDbContext : IdentityDbContext<Users>
+public class AuthDbContext : IdentityDbContext<User>
 {
     public AuthDbContext(DbContextOptions<AuthDbContext> options)
         : base(options)
@@ -19,4 +20,17 @@ public class AuthDbContext : IdentityDbContext<Users>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+    public DbSet<Rukama.Areas.Identity.Data.User>? User { get; set; }
+
+    public DbSet<Rukama.Models.Object>? Object { get; set; }
+
+    public DbSet<Rukama.Models.Establishment>? Establishment { get; set; }
+
+    public DbSet<Rukama.Models.Joke>? Joke { get; set; }
+
+    public DbSet<Rukama.Models.Subject>? Subject { get; set; }
+
+
+
+
 }
