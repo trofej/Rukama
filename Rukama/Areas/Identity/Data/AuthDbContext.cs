@@ -26,7 +26,6 @@ public class AuthDbContext : IdentityDbContext<User>
 
     public DbSet<Rukama.Models.Establishment>? Establishment { get; set; }
 
-    public DbSet<Rukama.Models.Joke>? Joke { get; set; }
 
     public DbSet<Rukama.Models.Subject>? Subject { get; set; }
 

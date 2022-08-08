@@ -62,18 +62,6 @@
                 @Html.DisplayNameFor(model => model.OpeningHours)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IconURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageURL1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageURL2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageURL3)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CreationDate)
             </th>
             <th>
@@ -134,27 +122,17 @@
                 @Html.DisplayFor(modelItem => item.OpeningHours)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IconURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageURL1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageURL2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageURL3)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ObjectID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ObjectID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ObjectID">Delete</a>
+                    <div class="button-container">
+                          <a asp-action="Edit" asp-route-id="@item.ObjectID" class="btn-primary btn-sm" type="button"><i class="fa fa-edit"></i> Edit</a>
+                          <a asp-action="Details" asp-route-id="@item.ObjectID" class="btn-info btn-sm" type="button"><i class="fa fa-bars"></i> Details</a>
+                          <a asp-action="Delete" asp-route-id="@item.ObjectID" class="btn-danger btn-sm" type="button"><i class="fa fa-trash"></i> Delete</a>
+                    </div>
             </td>
         </tr>
 }
