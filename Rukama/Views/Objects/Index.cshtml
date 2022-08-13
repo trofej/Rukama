@@ -2,139 +2,94 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Table/_TableLayout.cshtml";
 }
 
-<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ObjectName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ObjectType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Specialization)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GPS)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Street)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StreetNr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MobileNr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TelephoneNr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FaxNr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.URL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpeningHours)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ObjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ObjectType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specialization)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GPS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StreetNr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobileNr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelephoneNr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FaxNr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.URL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OpeningHours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedDate)
-            </td>
-            <td>
-                    <div class="button-container">
-                          <a asp-action="Edit" asp-route-id="@item.ObjectID" class="btn-primary btn-sm" type="button"><i class="fa fa-edit"></i> Edit</a>
-                          <a asp-action="Details" asp-route-id="@item.ObjectID" class="btn-info btn-sm" type="button"><i class="fa fa-bars"></i> Details</a>
-                          <a asp-action="Delete" asp-route-id="@item.ObjectID" class="btn-danger btn-sm" type="button"><i class="fa fa-trash"></i> Delete</a>
-                    </div>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+<div class="table">
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ObjectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ObjectType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialization)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Street)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Region)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </th>
+                <th>
+                    Actions
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ObjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ObjectType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Specialization)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Street)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Region)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreationDate)
+                            </td>
+               
+                            <td>  
+                                    <div class="button-container">
+                                          <a asp-action="Edit" asp-route-id="@item.ObjectID" class="btn-primary btn-sm" id="editButton" type="button" title="Edit subject"><i class="fa fa-edit"></i></a>
+                                          <a asp-action="Details" asp-route-id="@item.ObjectID" class="btn-info btn-sm" id="detailsButton" type="button" title="Show details"><i class="fa fa-bars"></i></a>
+                                          <a asp-action="Delete" asp-route-id="@item.ObjectID" class="btn-danger btn-sm" id="deleteButton" type="button" title="Delete subject"><i class="fa fa-trash"></i></a>
+                                    </div>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,4 @@
-
+﻿
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -19,6 +19,10 @@ a {
 }
 
 
+body {
+    margin-bottom: 60px;
+    font-family: "Roboto", sans-serif;
+}
 
 html {
   font-size: 14px;
@@ -53,11 +57,6 @@ html {
     min-height: 100%;
 }
 
-body {
-    margin-bottom: 60px;
-    font-family: "Roboto", sans-serif;
-}
-
 .footer {
     position: absolute;
     bottom: 0;
@@ -66,7 +65,7 @@ body {
     line-height: 60px;
 }
 
-/*for tab control*/
+/*for login/logout tab control*/
 div.login-logout-tab div.card-header {
     padding: 0px 0px 0px 0px;
 }
@@ -95,52 +94,163 @@ div.login-form-icon {
 }
 
 div.form-group {
-    padding: 10px 10px;
+    padding: 0px 0px;
 }
 
 div.input-group-text {
     padding: 10px;
 }
 
+/*for object-subject tab control*/
+
+
+div.object-subject-tab div.card-header {
+    padding: 0px 0px 0px 0px;
+}
+
+div.object-subject-tab ul.nav-tabs {
+    margin: 0px 0px 0px 0px;
+}
+
+div.object-subject-tab li.nav-item {
+    width: 50%;
+}
+
+div.object-subject-tab a.nav-link {
+    font-size: 25px;
+    color: #495057;
+    text-align: center;
+}
+
+div.object-subject-card-content {
+    padding: 0px 0px;
+}
+
+
+
 /*CRUD buttons*/
 
 
-.btn-primary {
+#editButton {
     color: #fff;
     background-color: blue;
     text-decoration: none;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     vertical-align: middle;
-    width: 80px;
-    height: 40px;
-    line-height: 30px;
+    width: 38px;
+    height: 32px;
     text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+#editButton:hover {
+    border: 1px solid #888;
+    background-color: #ddd;
 }
 
-.btn-info {
+#detailsButton {
     color: #fff;
     background-color: steelblue;
     text-decoration: none;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     vertical-align: middle;
-    width: 80px;
-    height: 40px;
-    line-height: 30px;
+    width: 38px;
+    height: 32px;
     text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
 }
 
-.btn-danger {
+#detailsButton:hover {
+    border: 1px solid #888;
+    background-color: #ddd;
+}
+
+#deleteButton {
     color: #fff;
     background-color: red;
     text-decoration: none;
     vertical-align: middle;
-    width: 80px;
-    height: 40px;
-    line-height: 30px;
+    width: 38px;
+    height: 32px;
     text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
 }
+
+#deleteButton:hover {
+    border: 1px solid #888;
+    background-color: #ddd;
+}
+
 
 div.button-container {
     display: flex;
     justify-content: space-between;
+}
+
+/*table*/
+
+.table {
+    background: #fff;
+    overflow-y: auto;
+    box-shadow: 0px 10px 50px 0px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 2rem;
+    max-height: 500px;
+    overflow-y: hidden;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+    table thead th,
+    table tbody td {
+        padding: 15px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    table thead th {
+        background: #1861ac;
+        color: white;
+        font-size: 16px;
+        position: sticky;
+        top: -1%;
+    }
+
+    table tbody td {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+/*login and register buttons*/
+
+#loginButton {
+    color: #fff;
+    background-color: blue;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+    padding: 4px;
+}
+
+
+#registerButton {
+    color: #fff;
+    background-color: blue;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+    padding: 4px;
+    margin: 10px 0px 0px 0px;
 }

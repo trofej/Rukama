@@ -6,16 +6,21 @@ using Rukama.Models;
 namespace Rukama.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class TableController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<TableController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public TableController(ILogger<TableController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
