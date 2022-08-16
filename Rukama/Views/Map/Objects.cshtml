@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Rukama.Models.Object>
+@{
+    ViewData["Title"] = "Interactive map";
+    Layout = "~/Views/Map/_MapLayout.cshtml";
+}
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+
+        <!-- Reference to the Bing Maps SDK -->
+        <script type='text/javascript'
+                src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Am60p6qXOEAGu07U49eslvfRG8MMPRyOHMLUkX4lIKIGeEo7-es4b73eRwCLaXni' 
+                async defer></script>
+    
+        <script type='text/javascript'>
+        function GetMap()
+        {
+            var map = new Microsoft.Maps.Map('#myMap');
+
+            //Add your post map load code here.
+
+            // Create the infobox for the pushpin  
+            var infobox = null;  
+  
+            //declare addMarker function  
+            function addMarker(Latitude, Longitude, ObjectName, ObjectID)  
+            {  
+                var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(Latitude, Longitude), { color: 'green' });  
+  
+                infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {  
+                    visible : false  
+                });  
+  
+                marker.metadata = {  
+                    id: ObjectID,  
+                    title: ObjectName,  
+                };  
+  
+                Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);  
+                Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);  
+  
+                infobox.setMap(map);  
+                map.entities.push(marker);  
+                marker.setOptions({ enableHoverStyle: true });  
+            };  
+  
+            function showInfobox(e) {  
+                if (e.target.metadata) {  
+                    infobox.setOptions({  
+                        location: e.target.getLocation(),  
+                        title: e.target.metadata.title,    
+                        visible: true  
+                    });  
+                }  
+            }  
+  
+            function hideInfobox(e) {  
+                infobox.setOptions({ visible: false });  
+            }  
+  
+            //add markers to map  
+            @if (Model != null)  
+            {  
+                @foreach (var item in Model)  
+                {  
+                    @:addMarker(@item.Latitude, @item.Longitude, '@item.ObjectName', @item.ObjectID);  
+                }  
+            }  
+            }
+        </script>
+    </head>
+    <body>
+        <div id="myMap"></div>
+    </body>
+    </html>

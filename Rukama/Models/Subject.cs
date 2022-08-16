@@ -68,9 +68,18 @@ namespace Rukama.Models
         [Display(Name = "Modified At")]
         public DateTime? ModifiedDate { get; set; } = DateTime.Now;
 
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
         public Subject()
         {
 
         }
+
+        public class SubjectList
+        {
+            public IEnumerable<Subject> SubjectLists { get; set; }
+        }
+
     }
 }
