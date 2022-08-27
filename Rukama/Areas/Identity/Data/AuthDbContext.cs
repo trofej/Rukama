@@ -24,10 +24,9 @@ public class AuthDbContext : IdentityDbContext<User>
 
     public DbSet<Rukama.Models.Object>? Object { get; set; }
 
-    public DbSet<Rukama.Models.Establishment>? Establishment { get; set; }
-
 
     public DbSet<Rukama.Models.Subject>? Subject { get; set; }
+
 
 
 

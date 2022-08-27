@@ -3,11 +3,14 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var photoPath1 = "~/Images/Subjects/" + (Model.ImagePath1 ?? "noimage.jpg");
+    var photoPath2 = "~/Images/Subjects/" + (Model.ImagePath2 ?? "noimage.jpg");
+    var photoPath3 = "~/Images/Subjects/" + (Model.ImagePath3 ?? "noimage.jpg");
 }
 
 <h1>Details</h1>
 
-<div>
+<div class="subject-details-page">
     <h4>Subject</h4>
     <hr />
     <dl class="row">
@@ -114,28 +117,34 @@
             @Html.DisplayFor(model => model.OpeningHours)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IconURL)
+            @Html.DisplayNameFor(model => model.Icon)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IconURL)
+            @Html.DisplayFor(model => model.Icon)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageURL1)
+            @Html.DisplayNameFor(model => model.ImagePath1)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageURL1)
+        <dd>
+        <div class = "image-container">
+            <img class="card-img-top" src="@photoPath1" asp-append-version="true"/>
+        </div>
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageURL2)
+            @Html.DisplayNameFor(model => model.ImagePath2)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageURL2)
+        <dd>
+        <div class = "image-container">
+            <img class="card-img-top" src="@photoPath2" asp-append-version="true"/>
+        </div>
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageURL3)
+            @Html.DisplayNameFor(model => model.ImagePath3)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageURL3)
+        <dd>
+        <div class = "image-container">
+            <img class="card-img-top" src="@photoPath3" asp-append-version="true"/>
+        </div>
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreationDate)
@@ -150,8 +159,9 @@
             @Html.DisplayFor(model => model.ModifiedDate)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.SubjectID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.SubjectID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>

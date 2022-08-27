@@ -17,7 +17,7 @@ namespace Rukama.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -239,24 +239,6 @@ namespace Rukama.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Rukama.Models.Establishment", b =>
-                {
-                    b.Property<int>("EnrollmentID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
-
-                    b.Property<int?>("ObjectID")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnrollmentID");
-
-                    b.HasIndex("ObjectID");
-
-                    b.ToTable("Establishment");
-                });
-
             modelBuilder.Entity("Rukama.Models.Object", b =>
                 {
                     b.Property<int>("ObjectID")
@@ -290,16 +272,16 @@ namespace Rukama.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IconURL")
+                    b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL1")
+                    b.Property<string>("ImagePath1")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL2")
+                    b.Property<string>("ImagePath2")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL3")
+                    b.Property<string>("ImagePath3")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Latitude")
@@ -387,16 +369,19 @@ namespace Rukama.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IconURL")
+                    b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL1")
+                    b.Property<string>("ImagePath1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL2")
+                    b.Property<string>("ImagePath2")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL3")
+                    b.Property<string>("ImagePath3")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Latitude")
@@ -497,15 +482,6 @@ namespace Rukama.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Rukama.Models.Establishment", b =>
-                {
-                    b.HasOne("Rukama.Models.Object", "Object")
-                        .WithMany()
-                        .HasForeignKey("ObjectID");
-
-                    b.Navigation("Object");
                 });
 #pragma warning restore 612, 618
         }

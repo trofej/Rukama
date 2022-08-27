@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Rukama.Areas.Identity.Data;
 
-namespace Rukama.Models
+namespace Rukama.ViewModels
 {
-    public class Object
+    public class ObjectCreateViewModel
     {
-        [Display(Name = "Object ID")]
-        public int ObjectID { get; set; }
 
         [Display(Name = "Name")]
         public string ObjectName { get; set; }
@@ -52,13 +49,13 @@ namespace Rukama.Models
         public string? Icon { get; set; }
 
         [DisplayName("1. Image")]
-        public string? ImagePath1 { get; set; }
+        public IFormFile Image1 { get; set; }
 
         [DisplayName("2. Image")]
-        public string? ImagePath2 { get; set; }
+        public IFormFile Image2 { get; set; }
 
         [DisplayName("3. Image")]
-        public string? ImagePath3 { get; set; }
+        public IFormFile Image3 { get; set; }
 
         [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -69,10 +66,5 @@ namespace Rukama.Models
 
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
-
-        public Object()
-        {
-
-        }
     }
 }

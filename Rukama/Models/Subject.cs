@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Rukama.Areas.Identity.Data;
 
@@ -49,17 +50,17 @@ namespace Rukama.Models
         [Display(Name = "Opening Hours")]
         public string? OpeningHours { get; set; }
 
-        [Display(Name = "Icon URL")]
-        public string? IconURL { get; set; }
+        [DisplayName("Icon")]
+        public string? Icon { get; set; }
 
-        [Display(Name = "1. Image URL")]
-        public string? ImageURL1 { get; set; }
+        [DisplayName("1. Image")]
+        public string ImagePath1 { get; set; }
 
-        [Display(Name = "2. Image URL")]
-        public string? ImageURL2 { get; set; }
+        [DisplayName("2. Image")]
+        public string ImagePath2 { get; set; }
 
-        [Display(Name = "3. Image URL")]
-        public string? ImageURL3 { get; set; }
+        [DisplayName("3. Image")]
+        public string ImagePath3 { get; set; }
 
         [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -76,10 +77,6 @@ namespace Rukama.Models
 
         }
 
-        public class SubjectList
-        {
-            public IEnumerable<Subject> SubjectLists { get; set; }
-        }
 
     }
 }

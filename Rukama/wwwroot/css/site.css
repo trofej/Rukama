@@ -58,7 +58,6 @@ html {
 }
 
 .footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
@@ -189,6 +188,47 @@ div.button-container {
     justify-content: space-between;
 }
 
+div.image-container {
+    height: 100px;
+    width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+}
+
+/*CRUD pages*/
+
+
+div.subject-delete-page {
+    padding-bottom: 100px;
+}
+div.subject-details-page {
+    padding-bottom: 100px;
+}
+div.subject-edit-page {
+    padding-bottom: 100px;
+}
+div.subject-index-page {
+    padding-bottom: 100px;
+}
+
+
+div.object-create-page {
+    padding-bottom: 100px;
+}
+div.object-delete-page {
+    padding-bottom: 100px;
+}
+div.object-details-page {
+    padding-bottom: 100px;
+}
+div.object-edit-page {
+    padding-bottom: 100px;
+}
+div.object-index-page {
+    padding-bottom: 100px;
+}
+
 /*table*/
 
 .table {
@@ -285,3 +325,4 @@ div.map-tab a.nav-link {
 div.map-card-content {
     padding: 0px 0px;
 }
+
