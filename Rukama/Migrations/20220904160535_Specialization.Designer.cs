@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rukama.Data;
 
@@ -11,9 +12,10 @@ using Rukama.Data;
 namespace Rukama.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220904160535_Specialization")]
+    partial class Specialization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,23 +241,6 @@ namespace Rukama.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Rukama.Models.LegalForm", b =>
-                {
-                    b.Property<int>("LegalFormID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LegalFormID"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LegalFormID");
-
-                    b.ToTable("LegalForm");
-                });
-
             modelBuilder.Entity("Rukama.Models.Object", b =>
                 {
                     b.Property<int>("ObjectID")
@@ -348,23 +333,6 @@ namespace Rukama.Migrations
                     b.HasKey("ObjectID");
 
                     b.ToTable("Object");
-                });
-
-            modelBuilder.Entity("Rukama.Models.ObjectType", b =>
-                {
-                    b.Property<int>("ObjectTypeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectTypeID"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ObjectTypeID");
-
-                    b.ToTable("ObjectType");
                 });
 
             modelBuilder.Entity("Rukama.Models.Specialization", b =>

@@ -1,15 +1,26 @@
 ﻿using System;
+using System.Xml.Linq;
+using System.Linq;
+using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoogleMaps.LocationServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Rukama.Data;
 using Rukama.Models;
 using Rukama.ViewModels;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using System.Runtime.Serialization.Json;
+using System.ServiceModel;
+using System.Runtime.Serialization;
 
-namespace Rukama.Controllers
+
+namespace Rukama.Controllers    
 {
     public class SubjectsController : Controller
     {
@@ -23,6 +34,7 @@ namespace Rukama.Controllers
             _hostEnvironment = hostEnvironment; 
 
         }
+
 
         // GET: Subjects
         public async Task<IActionResult> Index()
@@ -53,19 +65,24 @@ namespace Rukama.Controllers
         // GET: Subjects/Create
         public IActionResult Create()
         {
+
+            ViewBag.specializations = new SelectList(_context.Specialization, "Name", "Name");
+            ViewBag.legalforms = new SelectList(_context.LegalForm, "Name", "Name");
+
             return View();
+
         }
 
         // POST: Subjects/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SubjectCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-
 
                 string uniqueFileName1 = await ProcessUploadedFile1(model);
 

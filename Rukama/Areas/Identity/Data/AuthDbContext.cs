@@ -27,6 +27,12 @@ public class AuthDbContext : IdentityDbContext<User>
 
     public DbSet<Rukama.Models.Subject>? Subject { get; set; }
 
+    public DbSet<Rukama.Models.Specialization>? Specialization { get; set; }
+
+    public DbSet<Rukama.Models.LegalForm>? LegalForm { get; set; }
+
+    public DbSet<Rukama.Models.ObjectType>? ObjectType { get; set; }
+
 
 
 

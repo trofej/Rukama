@@ -52,6 +52,8 @@ namespace Rukama.Controllers
         // GET: Objects/Create
         public IActionResult Create()
         {
+            ViewBag.objecttypes = new SelectList(_context.ObjectType, "Name", "Name");
+            ViewBag.specializations = new SelectList(_context.Specialization, "Name", "Name");
             return View();
         }
 
