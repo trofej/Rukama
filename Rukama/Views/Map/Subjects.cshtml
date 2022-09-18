@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Rukama.Models.Subject>
+﻿@using Rukama.Models;
+@model dynamic
 
 @{
     ViewData["Title"] = "Interactive map";
@@ -6,126 +7,168 @@
 }
 
     
-    
     <!DOCTYPE html>
     <html>
     <head>
-        <title></title>
         <meta charset="utf-8" />
-
+        
         <!-- Reference to the Bing Maps SDK -->
         <script type='text/javascript'
                 src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Am60p6qXOEAGu07U49eslvfRG8MMPRyOHMLUkX4lIKIGeEo7-es4b73eRwCLaXni' 
                 async defer></script>
-    
         <script type='text/javascript'>
 
-        function GetMap()
-        {
-            var map = new Microsoft.Maps.Map('#myMap');
+            function changeChecked(id, specialization) {
+              // Get the checkbox
+              var checkBox = document.getElementById(id);
 
-            //Add your post map load code here.
+              var map = GetMap();
+              
+                var args = {};
+                args.Checked = true;
 
-            // Create the infobox for the pushpin  
-            var infobox = null;
+                $.ajax({
+                 type: "POST",
+                 url: "SpecializationsController/Edit",
+                 contentType: "application/json; charset=utf-8",
+                 data: args,
+                 dataType: "json",
+                 success: function(msg) 
+                 {
+                    // Something afterwards here
 
-            //declare addMarker function  
-            function addMarker(SubjectID, SubjectName, LegalForm, Specialization, Street, StreetNr, City, Country)  
-            {  
-
-                Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-                    var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                    var requestOptions = {
-                        bounds: map.getBounds(),
-                        where: `${Street} ${StreetNr}, ${City}, ${Country}`,
-                        callback: function (answer, userData) {
-                                            
-                            var marker = new Microsoft.Maps.Pushpin(answer.results[0].location, { color: 'green' });
-  
-                            infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {  
-                                visible : false  
-                            });  
-  
-                            marker.metadata = {  
-                                id: SubjectID,  
-                                title: SubjectName,
-                                form: LegalForm,
-                                spec: Specialization
-                            };  
-  
-                            Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);  
-                            Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);  
-  
-                            infobox.setMap(map);  
-                            map.entities.push(marker);  
-                            marker.setOptions({ enableHoverStyle: true });  
-                        }
-                    };
-                    searchManager.geocode(requestOptions);
+                 }
                 });
+
+            }
+
+            function GetMap()
+            {
+                var map = new Microsoft.Maps.Map('#myMap');
+
+                //Add your post map load code here.
+
+                // Create the infobox for the pushpin  
+                var infobox = null;
+
+                //declare addMarker function  
+                function addMarker(SubjectID, SubjectName, LegalForm, Specialization, Street, StreetNr, City, Country)  
+                {  
+
+                    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                        var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                        var requestOptions = {
+                            bounds: map.getBounds(),
+                            where: `${Street} ${StreetNr}, ${City}, ${Country}`,
+                            callback: function (answer, userData) {
+                                            
+                                var marker = new Microsoft.Maps.Pushpin(answer.results[0].location, { icon: `/Images/Icons/${Specialization}2.png` });
+  
+                                infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {  
+                                    visible : false  
+                                });  
+  
+                                marker.metadata = {  
+                                    id: SubjectID,  
+                                    title: SubjectName,
+                                    form: LegalForm,
+                                    spec: Specialization
+                                };
+  
+                                Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);  
+                                Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);  
+  
+                                infobox.setMap(map);  
+                                map.entities.push(marker);  
+                                marker.setOptions({ enableHoverStyle: true });  
+                            }
+                        };
+                        searchManager.geocode(requestOptions);
+                    });
 
 
                
-            };  
+                };  
   
-            function showInfobox(e) {  
-                if (e.target.metadata) {  
-                    infobox.setOptions({  
-                        location: e.target.getLocation(),  
-                        title: e.target.metadata.title,
-                        description: e.target.metadata.spec,
-                        visible: true  
-                    });  
+                function showInfobox(e) {  
+                    if (e.target.metadata) {  
+                        infobox.setOptions({  
+                            location: e.target.getLocation(),  
+                            title: e.target.metadata.title,
+                            description: e.target.metadata.spec,
+                            visible: true,
+                            actions: [{
+                                label: 'Details',
+                                eventHandler: function () {
+                                    window.location.replace(`../Subjects/Details/${e.target.metadata.id}`);
+                                }
+                            }]
+                        });  
+                    }  
                 }  
-            }  
   
-            function hideInfobox(e) {  
-                infobox.setOptions({ visible: false });  
-            }  
+                function hideInfobox(e) {  
+                    infobox.setOptions({ visible: false });  
+                }  
   
-            //add markers to map  
-            @if (Model != null)  
-            {  
-                @foreach (var item in Model)  
+                //add markers to map  
+
+                @if (Model != null)  
                 {  
-                    @:addMarker(@item.SubjectID, '@item.SubjectName', '@item.LegalForm', '@item.Specialization', '@item.Street', '@item.StreetNr', '@item.City', '@item.Country');  
+
+                    @foreach (var sub in Model.Subjects)  
+                            {  
+                            @foreach (var spec in Model.Specializations)
+                            {
+                                if (sub.Specialization == spec.Name) {
+
+                                    @:addMarker(@sub.SubjectID, '@sub.SubjectName', '@sub.LegalForm', '@sub.Specialization', '@sub.Street', '@sub.StreetNr', '@sub.City', '@sub.Country')
+                                }
+                            }
+                  
+                            }  
                 }  
-            }  
+                return map;
 
             }
 
-            function geocodeQuery(query) {
-            //If search manager is not defined, load the search module.
-            if (!searchManager) {
-                //Create an instance of the search manager and call the geocodeQuery function again.
-                Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-                    searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                    geocodeQuery(query);
-                });
-            } else {
-                var searchRequest = {
-                    where: query,
-                    callback: function (r) {
-                        //Add the first result to the map and zoom into it.
-                        if (r && r.results && r.results.length > 0) {
-                            var pin = new Microsoft.Maps.Pushpin(r.results[0].location);
-                        }
-                    },
-                    errorCallback: function (e) {
-                        //If there is an error, alert the user about it.
-                        alert("No results found.");
+                function geocodeQuery(query) {
+                //If search manager is not defined, load the search module.
+                    if (!searchManager) {
+                        //Create an instance of the search manager and call the geocodeQuery function again.
+                        Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                            searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                            geocodeQuery(query);
+                        });
+                    } else {
+                        var searchRequest = {
+                            where: query,
+                            callback: function (r) {
+                                //Add the first result to the map and zoom into it.
+                                if (r && r.results && r.results.length > 0) {
+                                    var pin = new Microsoft.Maps.Pushpin(r.results[0].location);
+                                }
+                            },
+                            errorCallback: function (e) {
+                                //If there is an error, alert the user about it.
+                                alert("No results found.");
+                            }
+                        };
+
+                        //Make the geocode request.
+                        searchManager.geocode(searchRequest);
                     }
-                };
-
-                //Make the geocode request.
-                searchManager.geocode(searchRequest);
-            }
-                return pin;
-        }
+                        return pin;
+                }
 
         </script>
     </head>
     <body>
+        <ul class="spec">
+          <li class="spec"><input type="checkbox" id="cb1" onclick="changeChecked('cb1', 'Blacksmithing')"/>
+            <label class="spec" for="cb1"><img src="/Images/Icons/Blacksmithing.png" /></label>
+          </li>
+        </ul>
         <div id="myMap"></div>
     </body>
     </html>

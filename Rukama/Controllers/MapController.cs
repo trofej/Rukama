@@ -1,9 +1,9 @@
 ﻿
+using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rukama.Data;
 using Rukama.Models;
-using static Rukama.Models.Subject;
 
 namespace Rukama.Controllers
 {
@@ -16,11 +16,18 @@ namespace Rukama.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult>  Subjects()
+        public async Task<IActionResult> Subjects()
         {
-            return _context.Subject != null ?
-                        View(await _context.Subject.ToListAsync()) :
-                        Problem("Entity set 'AuthDbContext.Subject'  is null.");
+            dynamic myModel = new ExpandoObject();
+            if (_context.Subject != null && _context.Specialization != null)
+            {
+                myModel.Subjects = await _context.Subject.ToListAsync();
+                myModel.Specializations = await _context.Specialization.ToListAsync();
+                return View(myModel);
+            } else
+            {
+                return Problem("Entity set 'AuthDbContext.Subject' or AuthDbContext.Specialization'  is null.");
+            }
         }
 
         public async Task<IActionResult> Objects()
@@ -29,5 +36,6 @@ namespace Rukama.Controllers
                         View(await _context.Object.ToListAsync()) :
                         Problem("Entity set 'AuthDbContext.Object'  is null.");
         }
+
     }
 }

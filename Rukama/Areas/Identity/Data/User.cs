@@ -27,7 +27,7 @@ public class User : IdentityUser
 
     [PersonalData]
     [Column(TypeName = "nvarchar(2048)")]
-    public string? AvatarUrl { get; set; }
+    public string? AvatarPath { get; set; }
 
 }
 

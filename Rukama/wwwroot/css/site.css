@@ -5,9 +5,24 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.navbar-logo {
+    height: 50px;
+    width: 150px;
+}
+
+.navbar-custom {
+    background-color: #432828;
+}
+
+/* Form for profile*/
+
+.form-floating {
+
+    padding-bottom: 10px;
+}
+
 
 /*Provide sufficient contrast against white background*/
-
 a {
     color: #0366d6;
 }
@@ -22,6 +37,7 @@ a {
 body {
     margin-bottom: 60px;
     font-family: "Roboto", sans-serif;
+
 }
 
 html {
@@ -62,6 +78,7 @@ html {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+
 }
 
 /*for login/logout tab control*/
@@ -74,7 +91,7 @@ div.login-logout-tab ul.nav-tabs {
 }
 
 div.login-logout-tab li.nav-item {
-    width: 100%;
+    width: 50%;
 }
 
 div.login-logout-tab a.nav-link {
@@ -229,6 +246,10 @@ div.object-index-page {
     padding-bottom: 100px;
 }
 
+div.auth-layout {
+    padding-bottom: 100px;
+}
+
 /*table*/
 
 .table {
@@ -299,9 +320,10 @@ table {
 
 #myMap {
     position: static;
-    width: 600px;
-    height: 400px;
-
+    margin-top: 18px;
+    margin-bottom: 18px;
+    width: 745px;
+    height: 390px;
 }
 
 div.map-tab div.card-header {
@@ -324,4 +346,144 @@ div.map-tab a.nav-link {
 
 div.map-card-content {
     padding: 0px 0px;
+}
+
+/*specialization checkboxes*/
+
+
+ul.spec {
+    list-style-type: none;
+}
+
+li.spec {
+    display: inline-block;
+}
+
+input[type="checkbox"][id^="cb"] {
+    display: none;
+}
+
+label.spec {
+    border: 1px solid #fff;
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    label::before {
+        background-color: white;
+        color: white;
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        border: 1px solid grey;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        line-height: 28px;
+        transition-duration: 0.4s;
+        transform: scale(0);
+    }
+
+    label img {
+        height: 32px;
+        width: 32px;
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+    }
+
+:checked + label {
+    border-color: #ddd;
+}
+
+    :checked + label::before {
+        content: "✓";
+        background-color: grey;
+        transform: scale(1);
+    }
+
+    :checked + label img {
+        transform: scale(0.9);
+        box-shadow: 0 0 5px #333;
+        z-index: -1;
+    }
+
+/*avatar image customization*/
+
+#imageUpload {
+    display: none;
+}
+
+#profileImage {
+    cursor: pointer;
+}
+
+#profile-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+    #profile-container img {
+        width: 150px;
+        height: 150px;
+    }
+
+#hover-content {
+    background-color: white;
+    border-radius: 5px;
+    color: rgba(34, 34, 34, 0.829);
+    padding: 5px 4px 4px 4px;
+    position: relative;
+    box-shadow: 0px 1px 5px #999;
+    opacity: 0;
+    position: absolute;
+    transition: .5s ease;
+}
+
+    #profile-container:hover + #hover-content {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+}
+.outer {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 150px !important; /* any size */
+    max-height: 150px !important; /* any size */
+    margin: auto;
+    border-radius: 100%;
+    position: relative;
+}
+
+.inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

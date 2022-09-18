@@ -167,7 +167,7 @@ namespace Rukama.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("AvatarUrl")
+                    b.Property<string>("AvatarPath")
                         .HasColumnType("nvarchar(2048)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -374,6 +374,9 @@ namespace Rukama.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpecializationID"), 1L, 1);
+
+                    b.Property<bool>("Checked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

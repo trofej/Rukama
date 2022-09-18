@@ -15,6 +15,11 @@ namespace Rukama.Controllers
             _logger = logger;
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();

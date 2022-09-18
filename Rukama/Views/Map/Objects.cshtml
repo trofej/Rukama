@@ -37,7 +37,7 @@
                         where: `${Street} ${StreetNr}, ${City}, ${Country}`,
                         callback: function (answer, userData) {
                                             
-                            var marker = new Microsoft.Maps.Pushpin(answer.results[0].location, { color: 'green' });
+                            var marker = new Microsoft.Maps.Pushpin(answer.results[0].location, { icon: `/Images/Icons/${Specialization}2.png` });
   
                             infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {  
                                 visible : false  

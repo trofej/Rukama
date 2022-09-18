@@ -5,9 +5,24 @@
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-
-<form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group" text-align = "center">
+        <label asp-for="Input.AvatarPath"></label>
+        <div class="avatar-container">
+          <div class="outer">
+                <div id="profile-container">
+                   <image id="profileImage" src="/Images/choose-profile.png" />
+                </div>
+                <div id="hover-content">Click to add an avatar</div>
+                <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+            <div class="inner">
+                <img width="50" height="50" src="~/Images/add-image.png">  
+            </div>
+          </div>
+        </div>
+        <span asp-validation-for="Input.AvatarPath" class="text-danger"></span>
+    </div>
     <div class="form-group">
         <label asp-for="Input.Nickname"></label>
         <input asp-for="Input.Nickname" class="form-control" />
@@ -54,7 +69,25 @@
         <button type="submit" class="btn btn-primary btn-lg btn-block" id="registerButton">Register</button>
     </div>
 </form>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" ></partial>
+
+    <script>
+        $("#profileImage").click(function(e) {
+            $("#imageUpload").click();
+        });
+
+        function fasterPreview( uploader ) {
+            if ( uploader.files && uploader.files[0] ){
+                  $('#profileImage').attr('src', 
+                     window.URL.createObjectURL(uploader.files[0]) );
+            }
+        }
+
+        $("#imageUpload").change(function(){
+            fasterPreview( this );
+        });
+
+    </script>
+
 }
