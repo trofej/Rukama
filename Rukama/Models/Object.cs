@@ -18,8 +18,6 @@ namespace Rukama.Models
 
         public string Specialization { get; set; }
 
-        public string GPS { get; set; }
-
         public string Street { get; set; }
 
         [Display(Name = "Street Number")]
@@ -29,27 +27,16 @@ namespace Rukama.Models
 
         public string Country { get; set; }
 
-        public string? Region { get; set; }
-
         [Display(Name = "Mobile Number")]
         public int? MobileNr { get; set; }
 
         [Display(Name = "Telephone Number")]
         public int? TelephoneNr { get; set; }
-
-        [Display(Name = "Fax")]
-        public int? FaxNr { get; set; }
         public string? Email { get; set; }
 
         [Display(Name = "Website URL")]
         public string? URL { get; set; }
         public string? Comment { get; set; }
-
-        [Display(Name = "Opening Hours")]
-        public string? OpeningHours { get; set; }
-
-        [Display(Name = "Icon")]
-        public string? Icon { get; set; }
 
         [DisplayName("1. Image")]
         public string? ImagePath1 { get; set; }
@@ -66,9 +53,6 @@ namespace Rukama.Models
 
         [Display(Name = "Modified At")]
         public DateTime? ModifiedDate { get; set; } = DateTime.Now;
-
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
 
         public Object()
         {

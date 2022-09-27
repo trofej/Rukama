@@ -14,6 +14,18 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AuthDbContext>();
 
+// Add services for the identity (avatar upload when register)
+builder.Services.AddIdentityCore<User>()
+.AddRoles<IdentityRole>()
+.AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<User, IdentityRole>>()
+.AddEntityFrameworkStores<AuthDbContext>()
+.AddDefaultTokenProviders()
+.AddDefaultUI();
+
+// Add IUnitOfWork + UnitOfWork (avatar upload when register)
+
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();

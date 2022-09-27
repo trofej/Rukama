@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rukama.Data;
 
@@ -11,9 +12,10 @@ using Rukama.Data;
 namespace Rukama.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220924160713_hello3")]
+    partial class hello3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -282,6 +284,9 @@ namespace Rukama.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("FaxNr")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImagePath1")
                         .HasColumnType("nvarchar(max)");
 
@@ -393,6 +398,9 @@ namespace Rukama.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FaxNr")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImagePath1")
                         .HasColumnType("nvarchar(max)");

@@ -25,9 +25,7 @@ public class User : IdentityUser
     [Column(TypeName = "nvarchar(100)")]
     public string Surname { get; set; }
 
-    [PersonalData]
-    [Column(TypeName = "nvarchar(2048)")]
-    public string? AvatarPath { get; set; }
+    public string AvatarPath { get; set; }
 
 }
 

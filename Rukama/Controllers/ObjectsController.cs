@@ -80,27 +80,20 @@ namespace Rukama.Controllers
                     ObjectName = model.ObjectName,
                     ObjectType = model.ObjectType,
                     Specialization = model.Specialization,
-                    GPS = model.GPS,
                     Street = model.Street,
                     StreetNr = model.StreetNr,
                     City = model.City,
                     Country = model.Country,
-                    Region = model.Region,
                     MobileNr = model.MobileNr,
                     TelephoneNr = model.TelephoneNr,
-                    FaxNr = model.FaxNr,
                     Email = model.Email,
                     URL = model.URL,
                     Comment = model.Comment,
-                    OpeningHours = model.OpeningHours,
-                    Icon = model.Icon,
                     ImagePath1 = uniqueFileName1,
                     ImagePath2 = uniqueFileName2,
                     ImagePath3 = uniqueFileName3,
                     CreationDate = model.CreationDate,
                     ModifiedDate = model.ModifiedDate,
-                    Latitude = model.Latitude,
-                    Longitude = model.Longitude
 
                 };
                 _context.Add(@object);
@@ -112,13 +105,17 @@ namespace Rukama.Controllers
 
         private async Task<string> ProcessUploadedFile3(ObjectCreateViewModel model)
         {
+            string uniqueFileName3 = null;
 
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Objects");
-            string uniqueFileName3 = Guid.NewGuid().ToString() + "_" + model.Image3.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName3);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (model.Image3 != null)
             {
-                await model.Image3.CopyToAsync(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Objects");
+                uniqueFileName3 = Guid.NewGuid().ToString() + "_" + model.Image3.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName3);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image3.CopyToAsync(fileStream);
+                }
             }
 
             return uniqueFileName3;
@@ -126,13 +123,17 @@ namespace Rukama.Controllers
 
         private async Task<string> ProcessUploadedFile2(ObjectCreateViewModel model)
         {
+            string uniqueFileName2 = null;
 
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Objects");
-            string uniqueFileName2 = Guid.NewGuid().ToString() + "_" + model.Image2.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName2);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (model.Image2 != null)
             {
-                await model.Image2.CopyToAsync(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Objects");
+                uniqueFileName2 = Guid.NewGuid().ToString() + "_" + model.Image2.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName2);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image2.CopyToAsync(fileStream);
+                }
             }
 
             return uniqueFileName2;
@@ -140,13 +141,16 @@ namespace Rukama.Controllers
 
         private async Task<string> ProcessUploadedFile1(ObjectCreateViewModel model)
         {
-
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Objects");
-            string uniqueFileName1 = Guid.NewGuid().ToString() + "_" + model.Image1.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName1);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            string uniqueFileName1 = null;
+            if (model.Image1 != null)
             {
-                await model.Image1.CopyToAsync(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Objects");
+                uniqueFileName1 = Guid.NewGuid().ToString() + "_" + model.Image1.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName1);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image1.CopyToAsync(fileStream);
+                }
             }
 
             return uniqueFileName1;
@@ -171,27 +175,20 @@ namespace Rukama.Controllers
                     ObjectName = @object.ObjectName,
                     ObjectType = @object.ObjectType,
                     Specialization = @object.Specialization,
-                    GPS = @object.GPS,
                     Street = @object.Street,
                     StreetNr = @object.StreetNr,
                     City = @object.City,
                     Country = @object.Country,
-                    Region = @object.Region,
                     MobileNr = @object.MobileNr,
                     TelephoneNr = @object.TelephoneNr,
-                    FaxNr = @object.FaxNr,
                     Email = @object.Email,
                     URL = @object.URL,
                     Comment = @object.Comment,
-                    OpeningHours = @object.OpeningHours,
-                    Icon = @object.Icon,
                     ExistingImagePath1 = @object.ImagePath1,
                     ExistingImagePath2 = @object.ImagePath2,
                     ExistingImagePath3 = @object.ImagePath3,
                     CreationDate = @object.CreationDate,
                     ModifiedDate = @object.ModifiedDate,
-                    Latitude = @object.Latitude,
-                    Longitude = @object.Longitude
                 };
                     
                 return View(objectEditViewModel);
@@ -222,24 +219,17 @@ namespace Rukama.Controllers
                     @object.ObjectName = model.ObjectName;
                     @object.ObjectType = model.ObjectType;
                     @object.Specialization = model.Specialization;
-                    @object.GPS = model.GPS;
                     @object.Street = model.Street;
                     @object.StreetNr = model.StreetNr;
                     @object.City = model.City;
                     @object.Country = model.Country;
-                    @object.Region = model.Region;
                     @object.MobileNr = model.MobileNr;
                     @object.TelephoneNr = model.TelephoneNr;
-                    @object.FaxNr = model.FaxNr;
                     @object.Email = model.Email;
                     @object.URL = model.URL;
                     @object.Comment = model.Comment;
-                    @object.OpeningHours = model.OpeningHours;
-                    @object.Icon = model.Icon;
                     @object.CreationDate = model.CreationDate;
                     @object.ModifiedDate = model.ModifiedDate;
-                    @object.Latitude = model.Latitude;
-                    @object.Longitude = model.Longitude;
 
                     if (model.Image1 != null)
                     {

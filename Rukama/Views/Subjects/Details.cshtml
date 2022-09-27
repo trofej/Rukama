@@ -6,163 +6,186 @@
     var photoPath1 = "~/Images/Subjects/" + (Model.ImagePath1 ?? "noimage.jpg");
     var photoPath2 = "~/Images/Subjects/" + (Model.ImagePath2 ?? "noimage.jpg");
     var photoPath3 = "~/Images/Subjects/" + (Model.ImagePath3 ?? "noimage.jpg");
+
 }
 
-<h1>Details</h1>
+@{
+    <div class="subject-details-page">
+        <fieldset class="details-page-container">
+            <div class="details-page-title">Details of the subject: @Html.DisplayFor(model => model.SubjectName)</div>
 
-<div class="subject-details-page">
-    <h4>Subject</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SubjectName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SubjectName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LegalForm)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LegalForm)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Specialization)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Specialization)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GPS)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GPS)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StreetNr)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StreetNr)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Region)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MobileNr)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MobileNr)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TelephoneNr)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TelephoneNr)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FaxNr)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FaxNr)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.URL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.URL)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OpeningHours)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OpeningHours)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Icon)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Icon)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagePath1)
-        </dt>
-        <dd>
-        <div class = "image-container">
-            <img class="card-img-top" src="@photoPath1" asp-append-version="true"/>
-        </div>
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagePath2)
-        </dt>
-        <dd>
-        <div class = "image-container">
-            <img class="card-img-top" src="@photoPath2" asp-append-version="true"/>
-        </div>
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagePath3)
-        </dt>
-        <dd>
-        <div class = "image-container">
-            <img class="card-img-top" src="@photoPath3" asp-append-version="true"/>
-        </div>
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-    </dl>
+            <dl class="row">
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.SubjectName)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.SubjectName)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.LegalForm)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.LegalForm)
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.CID != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.CID)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.CID != null) 
+                    {
+                        @Html.DisplayFor(model => model.CID)
+                    }
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Specialization)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Specialization)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Street)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.StreetNr)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.StreetNr)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.MobileNr != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.MobileNr)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.MobileNr != null) 
+                    {
+                        @Html.DisplayFor(model => model.MobileNr)
+                    }
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.TelephoneNr != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.TelephoneNr)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.TelephoneNr != null) 
+                    {
+                        @Html.DisplayFor(model => model.TelephoneNr)
+                    }
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.Email != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.Email)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.Email != null) 
+                    {
+                        @Html.DisplayFor(model => model.Email)
+                    }
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.URL != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.URL)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.URL != null) 
+                    {
+                        @Html.DisplayFor(model => model.URL)
+                    }
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.Comment != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.Comment)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.Comment != null) 
+                    {
+                        @Html.DisplayFor(model => model.Comment)
+                    }
+                </dd>
 
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model?.SubjectID">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-        <a href="/Map/Subjects">Back to Map</a>
-    </div>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.CreationDate)
+                </dd>
+                <dt class = "col-sm-2">
+                    @if(Model.ModifiedDate != null) 
+                    {
+                        @Html.DisplayNameFor(model => model.ModifiedDate)
+                    }
+                </dt>
+                <dd class = "col-sm-10">
+                    @if(Model.ModifiedDate != null) 
+                    {
+                        @Html.DisplayFor(model => model.ModifiedDate)
+                    }
+                </dd>
+            </dl>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" text>
+                                    <b> @Html.DisplayNameFor(model => model.ImagePath1) </b>
+                                    <div class="form-group">
+                                    <img id="image-container" src="@photoPath1" alt="1. Image" asp-append-version="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <b> @Html.DisplayNameFor(model => model.ImagePath2) </b>
+                                    <div class="form-group">
+                                    <img id="image-container" src="@photoPath2" alt="2. Image" asp-append-version="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <b> @Html.DisplayNameFor(model => model.ImagePath3) </b>
+                                    <div class="form-group">
+                                    <img id="image-container" src="@photoPath3" alt="3. Image" asp-append-version="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.SubjectID" class="btn-primary btn-sm" id="editTextButton" type="button" title="Edit subject"><i class="fa fa-edit"></i>   Edit</a>
+                <a href="/Map/Subjects" class="btn-primary btn-sm" id="mapTextButton" type="button" title="Redirects to the map"><i class="fa fa-map"></i>   Map</a>
+                <a asp-action="Index" class="btn-primary btn-sm" id="tableTextButton" type="button" title="Redirects to the table"><i class="fa fa-table"></i>   Table</a>
+            </div>
+
+    </fieldset>
 </div>
+
+    
+}
+

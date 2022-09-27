@@ -97,27 +97,20 @@ namespace Rukama.Controllers
                     LegalForm = model.LegalForm,
                     CID = model.CID,
                     Specialization = model.Specialization,
-                    GPS = model.GPS,
                     Street = model.Street,
                     StreetNr = model.StreetNr,
                     City = model.City,
                     Country = model.Country,
-                    Region = model.Region,
                     MobileNr = model.MobileNr,
                     TelephoneNr = model.TelephoneNr,
-                    FaxNr = model.FaxNr,
                     Email = model.Email,
                     URL = model.URL,
                     Comment = model.Comment,
-                    OpeningHours = model.OpeningHours,
-                    Icon = model.Icon,
                     ImagePath1 = uniqueFileName1,
                     ImagePath2 = uniqueFileName2,
                     ImagePath3 = uniqueFileName3,
                     CreationDate = model.CreationDate,
                     ModifiedDate = model.ModifiedDate,
-                    Latitude = model.Latitude,
-                    Longitude = model.Longitude
 
                 };
                 _context.Add(subject);
@@ -129,27 +122,35 @@ namespace Rukama.Controllers
 
         private async Task<string> ProcessUploadedFile3(SubjectCreateViewModel model)
         {
+            string uniqueFileName3 = null;
 
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Subjects");
-            string uniqueFileName3 = Guid.NewGuid().ToString() + "_" + model.Image3.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName3);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (model.Image3 != null)
             {
-                await model.Image3.CopyToAsync(fileStream);
-            }
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Subjects");
+                uniqueFileName3 = Guid.NewGuid().ToString() + "_" + model.Image3.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName3);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image3.CopyToAsync(fileStream);
+                }
 
+            }
             return uniqueFileName3;
         }
 
         private async Task<string> ProcessUploadedFile2(SubjectCreateViewModel model)
         {
+            string uniqueFileName2 = null;
 
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Subjects");
-            string uniqueFileName2 = Guid.NewGuid().ToString() + "_" + model.Image2.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName2);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (model.Image2 != null)
             {
-                await model.Image2.CopyToAsync(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Subjects");
+                uniqueFileName2 = Guid.NewGuid().ToString() + "_" + model.Image2.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName2);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image2.CopyToAsync(fileStream);
+                }
             }
 
             return uniqueFileName2;
@@ -157,13 +158,17 @@ namespace Rukama.Controllers
 
         private async Task<string> ProcessUploadedFile1(SubjectCreateViewModel model)
         {
+            string uniqueFileName1 = null;
 
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Subjects");
-            string uniqueFileName1 = Guid.NewGuid().ToString() + "_" + model.Image1.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName1);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (model.Image1 != null)
             {
-                await model.Image1.CopyToAsync(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "Images/Subjects");
+                uniqueFileName1 = Guid.NewGuid().ToString() + "_" + model.Image1.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName1);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image1.CopyToAsync(fileStream);
+                }
             }
 
             return uniqueFileName1;
@@ -189,28 +194,24 @@ namespace Rukama.Controllers
                     LegalForm = subject.LegalForm,
                     CID = subject.CID,
                     Specialization = subject.Specialization,
-                    GPS = subject.GPS,
                     Street = subject.Street,
                     StreetNr = subject.StreetNr,
                     City = subject.City,
                     Country = subject.Country,
-                    Region = subject.Region,
                     MobileNr = subject.MobileNr,
                     TelephoneNr = subject.TelephoneNr,
-                    FaxNr = subject.FaxNr,
                     Email = subject.Email,
                     URL = subject.URL,
                     Comment = subject.Comment,
-                    OpeningHours = subject.OpeningHours,
-                    Icon = subject.Icon,
                     ExistingImagePath1 = subject.ImagePath1,
                     ExistingImagePath2 = subject.ImagePath2,
                     ExistingImagePath3 = subject.ImagePath3,
                     CreationDate = subject.CreationDate,
                     ModifiedDate = subject.ModifiedDate,
-                    Latitude = subject.Latitude,
-                    Longitude = subject.Longitude
                 };
+
+                ViewBag.specializations = new SelectList(_context.Specialization, "Name", "Name");
+                ViewBag.legalforms = new SelectList(_context.LegalForm, "Name", "Name");
 
                 return View(subjectEditViewModel);
             }
@@ -241,24 +242,17 @@ namespace Rukama.Controllers
                     subject.LegalForm = model.LegalForm;
                     subject.CID = model.CID;
                     subject.Specialization = model.Specialization;
-                    subject.GPS = model.GPS;
                     subject.Street = model.Street;
                     subject.StreetNr = model.StreetNr;
                     subject.City = model.City;
                     subject.Country = model.Country;
-                    subject.Region = model.Region;
                     subject.MobileNr = model.MobileNr;
                     subject.TelephoneNr = model.TelephoneNr;
-                    subject.FaxNr = model.FaxNr;
                     subject.Email = model.Email;
                     subject.URL = model.URL;
                     subject.Comment = model.Comment;
-                    subject.OpeningHours = model.OpeningHours;
-                    subject.Icon = model.Icon;
                     subject.CreationDate = model.CreationDate;
                     subject.ModifiedDate = model.ModifiedDate;
-                    subject.Latitude = model.Latitude;
-                    subject.Longitude = model.Longitude;
 
                     if (model.Image1 != null)
                     {

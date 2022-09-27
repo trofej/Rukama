@@ -34,11 +34,6 @@ namespace Rukama.Services
                 }
             }
 
-
-
-
-
-
         }
 
         private string GetpathAndFileName(string filename)

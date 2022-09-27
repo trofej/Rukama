@@ -1,17 +1,17 @@
 ﻿@model Rukama.Models.Object
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
     var photoPath1 = "~/Images/Objects/" + (Model.ImagePath1 ?? "noimage.jpg");
     var photoPath2 = "~/Images/Objects/" + (Model.ImagePath2 ?? "noimage.jpg");
     var photoPath3 = "~/Images/Objects/" + (Model.ImagePath3 ?? "noimage.jpg");
+
 }
 
-<div class="object-delete-page">
-    <fieldset class="delete-page-container">
-        <div class="delete-page-title">Are you sure you want to delete the object: @Model.ObjectName ?</div>
+<div class="object-details-page">
+    <fieldset class="details-page-container">
+        <div class="details-page-title">Details of the object: @Html.DisplayFor(model => model.ObjectName)</div>
 
         <dl class="row">
             <dt class = "col-sm-2">
@@ -56,69 +56,87 @@
             <dd class = "col-sm-10">
                 @Html.DisplayFor(model => model.Country)
             </dd>
-            @if (Model.MobileNr != null)
-            {
-                <dt class = "col-sm-2">
+            <dt class = "col-sm-2">
+                @if(Model.MobileNr != null) 
+                {
                     @Html.DisplayNameFor(model => model.MobileNr)
-                </dt>
-                <dd class = "col-sm-10">
+                }
+            </dt>
+            <dd class = "col-sm-10">
+                @if(Model.MobileNr != null) 
+                {
                     @Html.DisplayFor(model => model.MobileNr)
-                </dd>
-            }
-            @if (Model.TelephoneNr != null)
-            {
-                <dt class = "col-sm-2">
+                }
+            </dd>
+            <dt class = "col-sm-2">
+                @if (Model.TelephoneNr != null)
+                {
                     @Html.DisplayNameFor(model => model.TelephoneNr)
-                </dt>
-                <dd class = "col-sm-10">
+                }
+            </dt>
+            <dd class = "col-sm-10">
+                @if (Model.TelephoneNr != null)
+                {
                     @Html.DisplayFor(model => model.TelephoneNr)
-                </dd>
-            }
-            @if (Model.Email != null)
-            {
-                <dt class = "col-sm-2">
+                }
+            </dd>
+            <dt class = "col-sm-2">
+                @if (Model.Email != null)
+                {
                     @Html.DisplayNameFor(model => model.Email)
-                </dt>
-                <dd class = "col-sm-10">
+                }
+            </dt>
+            <dd class = "col-sm-10">
+                @if (Model.Email != null)
+                {
                     @Html.DisplayFor(model => model.Email)
-                </dd>
-            }
-            @if (Model.URL != null)
-            {
-                <dt class = "col-sm-2">
+                }
+            </dd>
+            <dt class = "col-sm-2">
+                @if (Model.URL != null)
+                {
                     @Html.DisplayNameFor(model => model.URL)
-                </dt>
-                <dd class = "col-sm-10">
+                }
+            </dt>
+            <dd class = "col-sm-10">
+                @if (Model.URL != null)
+                {
                     @Html.DisplayFor(model => model.URL)
-                </dd>
-            }
-            @if (Model.Comment != null)
-            {
-                <dt class = "col-sm-2">
+                }
+            </dd>
+            <dt class = "col-sm-2">
+                @if (Model.Comment != null)
+                {
                     @Html.DisplayNameFor(model => model.Comment)
-                </dt>
-                <dd class = "col-sm-10">
+                }
+            </dt>
+            <dd class = "col-sm-10">
+                @if (Model.Comment != null)
+                {
                     @Html.DisplayFor(model => model.Comment)
-                </dd>
-            }
+                }
+            </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.CreationDate)
             </dt>
             <dd class = "col-sm-10">
                 @Html.DisplayFor(model => model.CreationDate)
             </dd>
-            @if (Model.ModifiedDate != null)
-            {
-                <dt class = "col-sm-2">
+            <dt class = "col-sm-2">
+                @if (Model.ModifiedDate != null)
+                {
                     @Html.DisplayNameFor(model => model.ModifiedDate)
-                </dt>
-                <dd class = "col-sm-10">
-                    @Html.DisplayFor(model => model.ModifiedDate)
-                </dd>
-            }
+                }
+            </dt>
+            <dd class = "col-sm-10">
+                @if (Model.ModifiedDate != null)
+                {
+                @Html.DisplayFor(model => model.ModifiedDate)
+                }
+            </dd>
         </dl>
 
-                    <div class="row" style="margin-top: 10px;">
+                        <div class="row">
                         <div class="col-md-4">
                             <div class="form-group" text>
                                 <b> @Html.DisplayNameFor(model => model.ImagePath1) </b>
@@ -144,11 +162,12 @@
                             </div>
                         </div>
                     </div>
-    
-        <form asp-action="Delete">
-            <input type="hidden" asp-for="ObjectID" />
-            <button type="submit" class="btn-danger btn-sm" id="deleteTextButton" title="Click to permanently delete the object"><i class="fa fa-trash"></i>   Delete</button>
-            <a asp-action="Index" class="btn-primary btn-sm" id="tableTextButton" type="button" title="Redirects to the table"><i class="fa fa-undo"></i>   Back to list</a>
-        </form>
+
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.ObjectID" class="btn-primary btn-sm" id="editTextButton" type="button" title="Edit subject"><i class="fa fa-edit"></i>   Edit</a>
+            <a href="/Map/Subjects" class="btn-primary btn-sm" id="mapTextButton" type="button" title="Redirects to the map"><i class="fa fa-map"></i>   Map</a>
+            <a asp-action="Index" class="btn-primary btn-sm" id="tableTextButton" type="button" title="Redirects to the table"><i class="fa fa-table"></i>   Table</a>
+        </div>
     </fieldset>
 </div>

@@ -32,9 +32,17 @@ namespace Rukama.Controllers
 
         public async Task<IActionResult> Objects()
         {
-            return _context.Object != null ?
-                        View(await _context.Object.ToListAsync()) :
-                        Problem("Entity set 'AuthDbContext.Object'  is null.");
+            dynamic myModel = new ExpandoObject();
+            if (_context.Object != null && _context.Specialization != null)
+            {
+                myModel.Objects = await _context.Object.ToListAsync();
+                myModel.Specializations = await _context.Specialization.ToListAsync();
+                return View(myModel);
+            }
+            else
+            {
+                return Problem("Entity set 'AuthDbContext.Object' or AuthDbContext.Specialization'  is null.");
+            }
         }
 
     }

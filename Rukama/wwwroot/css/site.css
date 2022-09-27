@@ -21,6 +21,10 @@ a.navbar-brand {
     padding-bottom: 10px;
 }
 
+.profile-page {
+    padding-bottom: 100px;
+}
+
 
 /*Provide sufficient contrast against white background*/
 a {
@@ -205,12 +209,11 @@ div.button-container {
     justify-content: space-between;
 }
 
-div.image-container {
-    height: 100px;
-    width: 100px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
+#image-container {
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #000000;
 }
 
 /*CRUD pages*/
@@ -228,7 +231,9 @@ div.subject-edit-page {
 div.subject-index-page {
     padding-bottom: 100px;
 }
-
+div.subject-page {
+    padding-bottom: 100px;
+}
 
 div.object-create-page {
     padding-bottom: 100px;
@@ -487,3 +492,185 @@ label.spec {
     bottom: 0;
     right: 0;
 }
+
+/*Title for details, edit, create and delete...*/
+
+.create-page-container {
+    border: 2px black solid;
+    border-radius: 25px;
+    border-color: darkgreen;
+    padding: 0px 20px 20px 20px;
+}
+
+.edit-page-container {
+    border: 2px black solid;
+    border-radius: 25px;
+    padding: 0px 20px 20px 20px;
+}
+
+.details-page-container {
+    border: 2px black solid;
+    border-radius: 25px;
+    border-color: steelblue;
+    padding: 0px 20px 20px 20px;
+}
+
+.delete-page-container {
+    border: 2px black solid;
+    border-radius: 25px;
+    padding: 0px 20px 20px 20px;
+}
+
+.create-page-title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    padding: 0.5em 0.5em;
+    background-color: darkgreen;
+    color: white;
+    margin: 20px 0px 20px 0px;
+}
+.edit-page-title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    padding: 0.5em 0.5em;
+    background-color: blue;
+    color: white;
+    margin: 20px 0px 20px 0px;
+}
+.details-page-title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    padding: 0.5em 0.5em;
+    background-color: steelblue;
+    color: white;
+    margin: 20px 0px 20px 0px;
+}
+.delete-page-title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    padding: 0.5em 0.5em;
+    background-color: red;
+    color: white;
+    margin: 20px 0px 20px 0px;
+}
+
+
+/*buttons for the edit, details, create and delete pages*/
+
+#createTextButton {
+    color: #fff;
+    background-color: green;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    width: 120px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+    #createTextButton:hover {
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+
+#editTextButton {
+    color: #fff;
+    background-color: blue;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    width: 120px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+    #editTextButton:hover {
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+
+#detailsTextButton {
+    color: #fff;
+    background-color: steelblue;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    width: 120px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+    #detailsTextButton:hover {
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+
+#deleteTextButton {
+    color: #fff;
+    background-color: red;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 120px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+    #deleteTextButton:hover {
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+
+#tableTextButton {
+    color: #fff;
+    background-color: steelblue;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    width: 120px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+    #tableTextButton:hover {
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+
+#mapTextButton {
+    color: #fff;
+    background-color: darkgreen;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    width: 120px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+    #mapTextButton:hover {
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+
+/*Welcome page*/
+

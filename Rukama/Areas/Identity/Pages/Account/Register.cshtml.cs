@@ -119,7 +119,6 @@ namespace Rukama.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
             [Display(Name = "Avatar")]
             public string AvatarPath { get; set; }
 
@@ -143,8 +142,15 @@ namespace Rukama.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                _unitofwork.UploadAvatar(file);
-                var user = new User { Nickname = Input.Nickname, UserName = Input.Email, Email = Input.Email, Name = Input.Name, Surname = Input.Surname, AvatarPath = file.FileName};
+
+                if (file != null)
+                {
+                    _unitofwork.UploadAvatar(file);
+                }
+
+                var avatarPath = file == null ? "noimage.jpg" : file.FileName;
+
+                var user = new User { Nickname = Input.Nickname, UserName = Input.Email, Email = Input.Email, Name = Input.Name, Surname = Input.Surname, AvatarPath = avatarPath };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

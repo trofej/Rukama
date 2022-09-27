@@ -6,7 +6,6 @@
 }
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
-    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group" text-align = "center">
         <label asp-for="Input.AvatarPath"></label>
         <div class="avatar-container">
@@ -15,7 +14,7 @@
                    <image id="profileImage" src="/Images/choose-profile.png" />
                 </div>
                 <div id="hover-content">Click to add an avatar</div>
-                <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                <input id="imageUpload" type="file" name="file" placeholder="Photo" required="" />
             <div class="inner">
                 <img width="50" height="50" src="~/Images/add-image.png">  
             </div>

@@ -74,6 +74,7 @@ namespace Rukama.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
+            AvatarPath = user.AvatarPath;
 
             Input = new InputModel
             {
