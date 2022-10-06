@@ -10,6 +10,10 @@ namespace Rukama.Models
         [Display(Name = "Subject ID")]
         public int SubjectID { get; set; }
 
+        public string? UserID { get; set; }
+
+        public User User { get; set; }
+
         [Display(Name = "Name")]
         public string SubjectName { get; set; }
 

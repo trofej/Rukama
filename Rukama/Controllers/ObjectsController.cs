@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Rukama.Areas.Identity.Data;
 using Rukama.Data;
 using Rukama.Models;
 using Rukama.ViewModels;
@@ -14,19 +16,25 @@ namespace Rukama.Controllers
     public class ObjectsController : Controller
     {
         private readonly AuthDbContext _context;
+        private readonly UserManager<User> _userManager;
 
         public IWebHostEnvironment _hostEnvironment { get; }
 
-        public ObjectsController(AuthDbContext context, IWebHostEnvironment hostEnvironment)
+        public ObjectsController(   AuthDbContext context,
+                                    IWebHostEnvironment hostEnvironment,
+                                    UserManager<User> userManager)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
+            _userManager = userManager;
         }
 
         // GET: Objects
         public async Task<IActionResult> Index()
         {
-              return _context.Object != null ? 
+            ViewBag.userID = _userManager.GetUserId(User);
+
+            return _context.Object != null ? 
                           View(await _context.Object.ToListAsync()) :
                           Problem("Entity set 'AuthDbContext.Object'  is null.");
         }
@@ -74,10 +82,13 @@ namespace Rukama.Controllers
 
                 string uniqueFileName3 = await ProcessUploadedFile3(model);
 
+                var userID = _userManager.GetUserId(User);
+
                 //Insert record
                 Models.Object @object = new Models.Object()
                 {
                     ObjectName = model.ObjectName,
+                    UserID = userID,
                     ObjectType = model.ObjectType,
                     Specialization = model.Specialization,
                     Street = model.Street,
@@ -172,6 +183,7 @@ namespace Rukama.Controllers
                 ObjectEditViewModel objectEditViewModel = new ObjectEditViewModel
                 {
                     ObjectID = @object.ObjectID,
+                    UserID = @object.UserID,
                     ObjectName = @object.ObjectName,
                     ObjectType = @object.ObjectType,
                     Specialization = @object.Specialization,
@@ -190,7 +202,10 @@ namespace Rukama.Controllers
                     CreationDate = @object.CreationDate,
                     ModifiedDate = @object.ModifiedDate,
                 };
-                    
+
+                ViewBag.objecttypes = new SelectList(_context.ObjectType, "Name", "Name");
+                ViewBag.specializations = new SelectList(_context.Specialization, "Name", "Name");
+
                 return View(objectEditViewModel);
             }
             else
@@ -215,8 +230,10 @@ namespace Rukama.Controllers
             if (ModelState.IsValid)
             {
                     var @object = await _context.Object.FindAsync(id);
+                    var userID = _userManager.GetUserId(User);
 
                     @object.ObjectName = model.ObjectName;
+                    @object.UserID = userID;
                     @object.ObjectType = model.ObjectType;
                     @object.Specialization = model.Specialization;
                     @object.Street = model.Street;

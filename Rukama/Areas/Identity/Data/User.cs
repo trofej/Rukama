@@ -27,5 +27,9 @@ public class User : IdentityUser
 
     public string AvatarPath { get; set; }
 
+    public virtual ICollection<Subject>? Subjects { get; set; }
+
+    public virtual ICollection<Rukama.Models.Object>? Objects { get; set; }
+
 }
 

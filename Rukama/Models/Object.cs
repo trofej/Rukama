@@ -10,6 +10,11 @@ namespace Rukama.Models
         [Display(Name = "Object ID")]
         public int ObjectID { get; set; }
 
+        public string? UserID { get; set; }
+
+        public User User { get; set; }
+
+
         [Display(Name = "Name")]
         public string ObjectName { get; set; }
 

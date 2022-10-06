@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rukama.Data;
 
@@ -11,9 +12,10 @@ using Rukama.Data;
 namespace Rukama.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221005130039_M2")]
+    partial class M2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,8 +164,7 @@ namespace Rukama.Migrations
             modelBuilder.Entity("Rukama.Areas.Identity.Data.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("UserID");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -325,13 +326,7 @@ namespace Rukama.Migrations
                     b.Property<string>("URL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("ObjectID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Object");
                 });
@@ -443,13 +438,7 @@ namespace Rukama.Migrations
                     b.Property<string>("URL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("SubjectID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Subject");
                 });
@@ -503,35 +492,6 @@ namespace Rukama.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Rukama.Models.Object", b =>
-                {
-                    b.HasOne("Rukama.Areas.Identity.Data.User", "User")
-                        .WithMany("Objects")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Rukama.Models.Subject", b =>
-                {
-                    b.HasOne("Rukama.Areas.Identity.Data.User", "User")
-                        .WithMany("Subjects")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Rukama.Areas.Identity.Data.User", b =>
-                {
-                    b.Navigation("Objects");
-
-                    b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
         }

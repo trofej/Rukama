@@ -15,10 +15,26 @@ public class AuthDbContext : IdentityDbContext<User>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+
+        builder.Entity<User>()
+                    .Property(p => p.Id)
+                    .HasColumnName("UserID");
+
+        builder.Entity<User>()
+                .HasMany(s => s.Subjects)
+                .WithOne(u => u.User)
+                .IsRequired()
+                .HasForeignKey(i => i.UserID);
+
+        builder.Entity<User>()
+                .HasMany(s => s.Objects)
+                .WithOne(u => u.User)
+                .IsRequired()
+                .HasForeignKey(i => i.UserID);
+
         base.OnModelCreating(builder);
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
+
+
     }
     public DbSet<Rukama.Areas.Identity.Data.User>? User { get; set; }
 
@@ -32,6 +48,10 @@ public class AuthDbContext : IdentityDbContext<User>
     public DbSet<Rukama.Models.LegalForm>? LegalForm { get; set; }
 
     public DbSet<Rukama.Models.ObjectType>? ObjectType { get; set; }
+
+    public DbSet<Subject> Subjects { get; set; }
+
+    public DbSet<Rukama.Models.Object> Objects { get; set; }
 
 
 

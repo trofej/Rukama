@@ -18,6 +18,8 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using Microsoft.AspNetCore.Identity;
+using Rukama.Areas.Identity.Data;
 
 
 namespace Rukama.Controllers    
@@ -25,13 +27,17 @@ namespace Rukama.Controllers
     public class SubjectsController : Controller
     {
         private readonly AuthDbContext _context;
+        private readonly UserManager<User> _userManager;
 
         public IWebHostEnvironment _hostEnvironment { get; }
 
-        public SubjectsController(AuthDbContext context, IWebHostEnvironment hostEnvironment)
+        public SubjectsController(  AuthDbContext context, 
+                                    IWebHostEnvironment hostEnvironment, 
+                                    UserManager<User> userManager)
         {
             _context = context;
-            _hostEnvironment = hostEnvironment; 
+            _hostEnvironment = hostEnvironment;
+            _userManager = userManager;
 
         }
 
@@ -39,7 +45,9 @@ namespace Rukama.Controllers
         // GET: Subjects
         public async Task<IActionResult> Index()
         {
-              return _context.Subject != null ? 
+            ViewBag.userID = _userManager.GetUserId(User);
+
+            return _context.Subject != null ? 
                           View(await _context.Subject.ToListAsync()) :
                           Problem("Entity set 'AuthDbContext.Subject'  is null.");
         }
@@ -90,12 +98,15 @@ namespace Rukama.Controllers
 
                 string uniqueFileName3 = await ProcessUploadedFile3(model);
 
+                var userID = _userManager.GetUserId(User);
+
                 //Insert record
                 Subject subject = new Subject
                 {
                     SubjectName = model.SubjectName,
                     LegalForm = model.LegalForm,
                     CID = model.CID,
+                    UserID = userID,
                     Specialization = model.Specialization,
                     Street = model.Street,
                     StreetNr = model.StreetNr,
@@ -187,12 +198,14 @@ namespace Rukama.Controllers
 
             if (subject != null)
             {
+
                 SubjectEditViewModel subjectEditViewModel = new SubjectEditViewModel
                 {
                     SubjectID = subject.SubjectID,
                     SubjectName = subject.SubjectName,
                     LegalForm = subject.LegalForm,
                     CID = subject.CID,
+                    UserID = subject.UserID,
                     Specialization = subject.Specialization,
                     Street = subject.Street,
                     StreetNr = subject.StreetNr,
@@ -237,10 +250,12 @@ namespace Rukama.Controllers
             if (ModelState.IsValid)
             {
                     var subject = await _context.Subject.FindAsync(id);
+                    var userID = _userManager.GetUserId(User);
 
                     subject.SubjectName = model.SubjectName;
                     subject.LegalForm = model.LegalForm;
                     subject.CID = model.CID;
+                    subject.UserID = userID;
                     subject.Specialization = model.Specialization;
                     subject.Street = model.Street;
                     subject.StreetNr = model.StreetNr;

@@ -10,6 +10,8 @@ namespace Rukama.ViewModels
         [Display(Name = "Name")]
         public string ObjectName { get; set; }
 
+        public string? UserID { get; set; }
+
         [Display(Name = "Object Type")]
         public string ObjectType { get; set; }
 

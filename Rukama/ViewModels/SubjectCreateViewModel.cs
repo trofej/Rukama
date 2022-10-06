@@ -10,6 +10,8 @@ namespace Rukama.ViewModels
         [Display(Name = "Name")]
         public string SubjectName { get; set; }
 
+        public string? UserID { get; set; }
+
         [Display(Name = "Legal Form")]
         public string LegalForm { get; set; }
 
